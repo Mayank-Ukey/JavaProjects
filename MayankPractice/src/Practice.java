@@ -1,39 +1,51 @@
-// Abstract Class and Method in Java
+// Interfaces in Java
 
-
-// NOTE: Abstract is such a class, with the help of which other classes can be created. (Abstract sets a standard for
-// implementing methods.)
-abstract class Parent{
-    public Parent(){
-        System.out.println("I am parent class.");
-    }
-    abstract public void greet();
+interface Bicycle{
+    int a = 15;
+    void applyBrake(int decrement);
+    void speedUp(int increment);
 }
 
-class Child extends Parent{
-    @Override
-    public void greet(){
-        System.out.println("Hello, I'm a child class and have a good day.");
-    }
+interface BlowHorn{
+    void blowHornK3g();
+    void blowHornMHN();
 }
 
-class Child2 extends Parent{
-    @Override
-    public void greet(){
-        System.out.println("I am the second child of parent class.");
+class AvonCycle implements Bicycle, BlowHorn{
+    void blowHorn(){
+        System.out.println("Pee Pee Poo Poo");
+    }
+    public void applyBrake(int decrement){
+        System.out.println("Applying brake.");
+    }
+
+    public void speedUp(int increment){
+        System.out.println("Incrementing speed.");
+    }
+    public void blowHornK3g(){
+        System.out.println("Kabhi khushi kabhi gum pee pee");
+    }
+    public void blowHornMHN(){
+        System.out.println("Main hoon na po po po");
     }
 }
 
 public class Practice{
     public static void main(String[] args) {
-        Parent p = new Child(); // We can give reference of the abstract class and can create object of the child class.
-        p.greet();
-//        Parent p = new Parent(); // We can't create objects of abstract classes.
-        // But we can use the constructor of parent class.
-        Child c = new Child();
-        c.greet();
+        AvonCycle cycle1 = new AvonCycle();
+        cycle1.applyBrake(1);
+        cycle1.speedUp(1);
+        cycle1.blowHorn();
+        // We can create properties or attributes in interfaces
+        System.out.println(cycle1.a);
 
-        Child2 c2 = new Child2();
-        c2.greet();
+        // We cannot modify the properties or attributes in interfaces,
+        // as they are final
+//        cycle1.a = 20; // Not allowed
+
+        // We can implement two or more interface in a single class.
+        // Just like we've implemented Bicycle and BlowHorn in AvonCycle.
+        cycle1.blowHornK3g();
+        cycle1.blowHornMHN();
     }
 }
